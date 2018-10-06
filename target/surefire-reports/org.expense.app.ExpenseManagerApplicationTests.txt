@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.expense.app.ExpenseManagerApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.493 sec - in org.expense.app.ExpenseManagerApplicationTests

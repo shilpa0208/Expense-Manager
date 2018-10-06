@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+
+</head>
+<body>
+
+	<div id="content" th:fragment="editPaymentType">
+		<h3>Edit Payment Type</h3>
+		
+		<form th:action="@{'/expense/payment-types/' + ${paymentType.id} + '/update'}" th:object="${paymentType}" method="post">
+			<div class="form-group">
+				<label for="mode">Payment Mode</label>
+				<input type="text" class="form-control" th:field="*{mode}" th:required="required"/>
+			</div>
+			<div class="form-group">
+				<label for="type">Payment Type</label>
+				<input type="text" class="form-control" th:field="*{type}" th:required="required"/>
+			</div>
+			<button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+			<button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
+			<button type="submit" class="btn btn-primary" name="action" value="cancel">Cancel</button>
+		</form>
+	</div>
+
+</body>
+</html>

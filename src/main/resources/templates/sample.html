@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+</head>
+<body>
+	<header th:replace="layout :: site-header"></header>
+
+	<div class="page-header">
+		<h3>Create a new Sample</h3>
+	</div>
+
+	<form action="#" th:action="@{/expense/sample}"
+		th:object="${sampleForm}" method="POST" style="margin-left: 15px;">
+
+		<div class="form-group row">
+			<label for="sample1" class="col-2 col-form-label">Sample 1</label>
+			<div class="col-10">
+				<input class="form-control" type="text" id="sample1"
+					th:field="*{sample1}"></input>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="sample2" class="col-2 col-form-label">Sample 2</label>
+			<div class="col-10">
+				<input class="form-control" type="text" id="sample2"
+					th:field="*{sample2}"></input>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="sample3" class="col-2 col-form-label">Sample 3</label>
+			<div class="col-10">
+				<input class="form-control" type="text" id="sample3"
+					th:field="*{sample3}"></input>
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Submit</button>
+
+	</form>
+	<footer th:replace="layout :: site-footer"></footer>
+
+</body>
+</html>
+

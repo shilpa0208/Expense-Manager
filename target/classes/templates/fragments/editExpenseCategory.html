@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+
+</head>
+<body>
+
+	<div id="content" th:fragment="editExpenseCategory">
+		<h3>Edit Expense Category</h3>
+		
+		<form th:action="@{'/expense/expense-category/' + ${expenseCategory.code} +'/update'}" th:object="${expenseCategory}" method="post">
+			<div class="form-group">
+				<label for="code">Code:</label>
+				<input type="text" class="form-control" th:field="*{code}" th:required="required"/> 
+			</div>
+			<div class="form-group">
+				<label for="description">Description:</label>
+				<input type="text" class="form-control" th:field="*{description}" th:required="required"/>
+			</div>
+			<button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+			<button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
+			<button type="submit" class="btn btn-primary" name="action" value="cancel">Cancel</button>
+		</form>
+		
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<div id="content" th:fragment="expenses">
+		<h3>All Expenses</h3>
+		
+		<div th:unless="${#lists.isEmpty(allExpenses)}">
+			<table class="table tabl-nonfluid table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Expense Category</th>
+						<th>Payment Mode</th>
+						<th>Location</th>
+						<th>Amount</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="expense: ${allExpenses}" th:data-id="${expense.id}">
+						<td th:text="${expense.createdDate}"></td>
+						<td th:text="${expense.category}"></td>
+						<td th:text="${expense.paymentType}"></td>
+						<td th:text="${expense.location}"></td>
+						<td th:text="${expese.amount}"></td>
+						<td th:text="${expense.description}"></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		
+		<div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal" value="addExpense">Add Expense</button>
+		</div>
+		
+		
+			<div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				    
+				      <form th:action="@{/expense/expenses}" th:object="${expense}" method="post">
+				    	
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="addExpenseModalLabel">Add User</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      
+					      <div class="modal-body">
+					      	
+					      		<div class="form-group">
+					      			<label for="createddate">Date:</label>
+					      			<input type="date" class="form-control" th:field="*{createdDate}" th:required="required"/>
+					      		</div>
+					      		<div class="form-group">
+					      			<label for="category">Expense Category:</label>
+					      			<select class="form-control" th:field="*{category.code}"  id="dropExpenseCategory">
+    									<option value="0">Select Expense Category</option>
+								    	<option th:each="expenseCategory : ${allExpenseCategories}" th:value="${expenseCategory.code}" th:text="${expenseCategory.code}"></option>
+								    </select>
+					      		</div>
+					      		<div class="form-group">
+					      			<label for="paymentType"></label>
+					      			<select class="form-control" th:field="*{paymentType.mode}"  id="dropPaymentType">
+    									<option value="0">Select Payment Type</option>
+								    	<option th:each="paymentType : ${allPaymentTypes}" th:value="${paymentType.id}" th:text="${paymentType.mode}+ ' - ' + ${paymentType.type}"></option>
+								    </select>
+					      		</div>
+					      		<div class="form-group">
+					      			<label for="Location">Location:</label>
+					      			<select class="form-control" th:field="*{location.id}"  id="dropLocation">
+    									<option value="0">Select Location</option>
+								    	<option th:each="location : ${allLocations}" th:value="${location.id}" th:text="${location.city}"></option>
+								    </select>
+					      		</div>
+					      		<div class="form-group">
+					      			<label for="amount">Amount:</label>
+					      			<input type="number" class="form-control" th:field="*{amount}" th:required="required"/>
+					      		</div>
+					      		<div class="form-group">
+					      			<label for="description">Description:</label>	
+					      			<textarea class="form-control" th:field="*{description}"></textarea>
+					      		</div>
+					      		
+					      </div>
+					      
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary" value="saveExpense">Save changes</button>
+					      </div>
+				      
+				      </form>
+				      
+				    </div>
+				  </div>
+			</div>
+	</div>
+
+</body>
+</html>

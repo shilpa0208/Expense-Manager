@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+
+</head>
+<body>
+
+	<div id="content" th:fragment="editLocation">
+		<h3>Edit Location</h3>
+			<form th:action="@{'/expense/locations/' + ${location.id} + '/update'}" th:object="${location}" method="post">
+				<div class="form-group">
+					<label for="city">City:</label>
+					<input type="text" class="form-control" th:field="*{city}" th:required="required"/>
+				</div>
+				<div class="form-group">
+					<label for="country">Country:</label>
+					<input type="text" class="form-control" th:field="*{country}" th:required="required"/>
+				</div>
+				<div class="form-group">
+					<label for="zipCode">Zip Code:</label>
+					<input type="text" class="form-control" th:field="*{zipCode}"/>
+				</div>				
+				<button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+				<button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
+				<button type="submit" class="btn btn-primary" name="action" value="cancel">Cancel</button>
+			</form>
+	</div>
+</body>
+</html>

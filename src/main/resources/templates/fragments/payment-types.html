@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<div id="content" th:fragment="payment-types">
+		<h3>All Payment Modes</h3>
+		
+		<div th:unless="${#lists.isEmpty(allPaymentTypes)}">
+		
+			<table class="table table-nonfluid table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Payment Mode</th>
+						<th>Payment Type</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="paymentType: ${allPaymentTypes}" th:data-id="${paymentType.id}">
+						<td><a th:href="@{'/expense/payment-types/' + ${paymentType.id} + '/edit'}" th:text="${paymentType.mode}"></a></td>
+						<td th:text="${paymentType.type}"></td>
+					</tr>
+				</tbody>
+			</table> 
+		</div>
+		
+		<div>
+			<button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaymentTypeModal" value="addPaymentType">Add Payment Type</button>
+		</div>
+			
+		<div class="modal fade" id="addPaymentTypeModal" tabindex="-1" role="dialog" aria-labelledby="addPayTypeModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    
+			      <form th:action="@{/expense/payment-types}" th:object="${paymentType}" method="post">
+			    	
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="addPayTypeModalLabel">Add Payment Type</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      
+				      <div class="modal-body">
+				      	
+				        	<div class="form-group">
+								<label for="mode">Payment Mode:</label>
+								<input type="text" class="form-control" th:field="*{mode}" th:required="required"/>
+								 
+							</div>
+							<div class="form-group">
+								<label for="type">Payment Type:</label>
+								<input type="text" class="form-control" th:field="*{type}" th:required="required"/> 	
+							</div>
+				
+				      </div>
+				      
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="submit" class="btn btn-primary" value="saveUser">Save changes</button>
+				      </div>
+			      
+			      </form>
+			      
+			    </div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

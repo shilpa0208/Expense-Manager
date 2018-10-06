@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div id="sidebar" th:fragment="left-menu">
+	
+		<h2>Expenses</h2>
+			<ul id="sidebar">
+				<li><a href="#" th:href="@{/expense/expenses}">All Expenses</a></li>
+			</ul>
+		<h2>Administration</h2>
+			<ul id="sidebar">
+				<li><a href="#" th:href="@{/expense/expense-category}">Expense Category</a></li>
+				<li><a href="#" th:href="@{/expense/locations}">Location</a></li>
+				<li><a href="#" th:href="@{/expense/payment-types}">Payment Mode</a></li>
+				<li><a href="#" th:href="@{/expense/users}">Users</a></li>
+			</ul>
+
+	</div>
+</body>
+</html>

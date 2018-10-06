@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout::site-head">
+		<title>Expense Manager</title>
+	</head>
+	<body>
+		
+		<header th:replace="layout::site-header"></header>		
+		
+		<div th:replace="menu::left-menu"></div>
+		
+		<div th:replace="@{'fragments/' + ${template}}  ::  ${template}"></div>
+				
+		<footer th:replace="layout::site-footer"></footer>
+		
+	</body>
+</html>
